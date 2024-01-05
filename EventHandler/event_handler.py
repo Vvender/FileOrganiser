@@ -2,6 +2,7 @@ import webbrowser
 from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtWidgets import QLineEdit
+from ExceptionHandler.exception_handler import CustomExceptionHandler
 
 
 class EventHandler:
@@ -30,6 +31,8 @@ class EventHandler:
                 QDesktopServices.openUrl(QUrl('https://blush-aretha-94.tiiny.site'))
             elif sender == self.ui.btn_info_return:
                 self.ui.pages.setCurrentIndex(0)
-        except Exception as e:  # Handle any exceptions that occur
-            # Handle the exception, e.g., log the error or display an error message to the user
-            print(f"An error occurred during main event: {e}")  # Print the error message
+        except Exception as e:
+            custom_exception = CustomExceptionHandler(e)
+            print(
+                f"An error occurred during main event,Error Code: {custom_exception.error_code}, Message: {custom_exception.error_message}")
+            self.close_connection()

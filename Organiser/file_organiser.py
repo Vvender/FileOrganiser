@@ -1,9 +1,8 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
-from PyQt5 import uic, QtGui
-import Gui.Icons.organiser_rc as organiser_rc
 import os
 import shutil
+from PyQt5 import QtGui
+from PyQt5.QtWidgets import QFileDialog
+from ExceptionHandler.exception_handler import CustomExceptionHandler
 
 
 class FileOrganiser:
@@ -15,9 +14,11 @@ class FileOrganiser:
         try:
             location = QFileDialog.getExistingDirectory(self.app.activeWindow(), "Select Directory")
             self.ui.lbl_file_location.setText(location)
-        except Exception as e:  # Handle any exceptions that occur
-            # Handle the exception, e.g., log the error or display an error message to the user
-            print(f"An error occurred during selecting file location: {e}")  # Print the error message
+        except Exception as e:
+            custom_exception = CustomExceptionHandler(e)
+            print(
+                f"An error occurred during selecting file location,Error Code: {custom_exception.error_code}, Message: {custom_exception.error_message}")
+            self.close_connection()
 
     def organise_files(self):
         try:
@@ -62,6 +63,8 @@ class FileOrganiser:
                 self.ui.lbl_icon_organised.setPixmap(QtGui.QPixmap(":/Icons/check-circle .svg"))
                 self.ui.pages.setCurrentIndex(1)
 
-        except Exception as e:  # Handle any exceptions that occur
-            # Handle the exception, e.g., log the error or display an error message to the user
-            print(f"An error occurred during organising files: {e}")  # Print the error message
+        except Exception as e:
+            custom_exception = CustomExceptionHandler(e)
+            print(
+                f"An error occurred during organising files,Error Code: {custom_exception.error_code}, Message: {custom_exception.error_message}")
+            self.close_connection()
