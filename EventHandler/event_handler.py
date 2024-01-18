@@ -28,7 +28,7 @@ class EventHandler:
             # Check if the sender is the CV button
             elif sender == self.ui.btn_cv:
                 # Open the CV URL
-                QDesktopServices.openUrl(QUrl('https://blush-aretha-94.tiiny.site'))
+                QDesktopServices.openUrl(QUrl('https://amethyst-nancee-79.tiiny.site'))
             elif sender == self.ui.btn_info_return:
                 self.ui.pages.setCurrentIndex(0)
         except Exception as e:
