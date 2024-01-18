@@ -25,4 +25,4 @@ File Organizer is a user-friendly file organization tool built with PyQt. It all
 - PyQt5: Installation guide included.
 
 ## License
-This project is licensed under the [MIT License](link).
+This project is licensed under the MIT License.
